@@ -19,6 +19,7 @@ public class EstablishmentService {
     }
     public Establishment createEstablishment(EstablishmentDto data){
         Establishment newEstablishment = new Establishment(data);
+        this.save(newEstablishment);
         return newEstablishment;
     }
     public Establishment findEstablishmentByCnpj(String cnpj) throws  Exception{
