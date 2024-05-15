@@ -21,5 +21,8 @@ public class EstablishmentService {
         Establishment newEstablishment = new Establishment(data);
         return newEstablishment;
     }
-
+    public Establishment findEstablishmentByCnpj(String cnpj) throws  Exception{
+        return this.repository.findEstablishmentByCnpj(cnpj).orElseThrow(() -> new Exception("Estabelecimento não encontrado"));
+    }
+    
 }
