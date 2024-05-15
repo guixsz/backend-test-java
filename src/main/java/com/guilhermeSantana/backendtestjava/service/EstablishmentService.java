@@ -24,5 +24,9 @@ public class EstablishmentService {
     public Establishment findEstablishmentByCnpj(String cnpj) throws  Exception{
         return this.repository.findEstablishmentByCnpj(cnpj).orElseThrow(() -> new Exception("Estabelecimento não encontrado"));
     }
-    
+
+    public void deleteEstablishment(String cnpj) throws Exception{
+        Establishment establishment = findEstablishmentByCnpj(cnpj);
+        this.repository.delete(establishment);
+    }
 }
