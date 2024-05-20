@@ -5,6 +5,8 @@ import com.guilhermeSantana.backendtestjava.dtos.EstablishmentDto;
 import com.guilhermeSantana.backendtestjava.repositories.EstablishmentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EstablishmentService {
 
@@ -17,6 +19,7 @@ public class EstablishmentService {
     public void save(Establishment establishment) {
         this.repository.save(establishment);
     }
+
     public Establishment createEstablishment(EstablishmentDto data){
         Establishment newEstablishment = new Establishment(data);
         this.save(newEstablishment);
@@ -30,4 +33,9 @@ public class EstablishmentService {
         Establishment establishment = findEstablishmentByCnpj(cnpj);
         this.repository.delete(establishment);
     }
+
+    public List<Establishment> findAll(){
+        return this.repository.findAll();
+    }
+
 }
