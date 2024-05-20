@@ -38,4 +38,15 @@ public class EstablishmentService {
         return this.repository.findAll();
     }
 
+    public Establishment update(String cnpj, EstablishmentDto data) throws Exception{
+        Establishment establishment = this.findEstablishmentByCnpj(cnpj);
+
+        if(!data.cnpj().isEmpty()) establishment.setCnpj(data.cnpj());
+
+        establishment = new Establishment(data);
+        repository.save(establishment);
+
+        return establishment;
+
+    }
 }
