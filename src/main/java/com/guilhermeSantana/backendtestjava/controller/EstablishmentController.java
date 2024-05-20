@@ -3,6 +3,7 @@ package com.guilhermeSantana.backendtestjava.controller;
 import com.guilhermeSantana.backendtestjava.domain.Establishment;
 import com.guilhermeSantana.backendtestjava.dtos.EstablishmentDto;
 import com.guilhermeSantana.backendtestjava.service.EstablishmentService;
+import jakarta.persistence.PostUpdate;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +37,11 @@ public class EstablishmentController {
     public ResponseEntity<List<Establishment>> findAll(){
         List<Establishment> listEstablishment = this.service.findAll();
         return new ResponseEntity<>(listEstablishment, HttpStatus.OK);
+    }
+
+    @PutMapping("/{cnpj}")
+    public ResponseEntity<Establishment> update(@PathVariable("cnpj") String cnpj, @RequestBody EstablishmentDto data) throws Exception{
+            Establishment updateEstablishment = this.service.update(cnpj, data);
+            return new ResponseEntity<>(updateEstablishment, HttpStatus.OK);
     }
 }
