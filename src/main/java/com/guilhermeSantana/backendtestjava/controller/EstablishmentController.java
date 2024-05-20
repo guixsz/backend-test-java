@@ -28,7 +28,7 @@ public class EstablishmentController {
     }
 
     @GetMapping("/{cnpj}")
-    public ResponseEntity<Establishment> FindEstablishmentByCnpj(@PathVariable String cnpj) throws Exception {
+    public ResponseEntity<Establishment> FindEstablishmentByCnpj(@PathVariable() String cnpj) throws Exception {
         Establishment establishment = this.service.findEstablishmentByCnpj(cnpj);
         return ResponseEntity.ok().body(establishment);
     }
@@ -43,5 +43,11 @@ public class EstablishmentController {
     public ResponseEntity<Establishment> update(@PathVariable("cnpj") String cnpj, @RequestBody EstablishmentDto data) throws Exception{
             Establishment updateEstablishment = this.service.update(cnpj, data);
             return new ResponseEntity<>(updateEstablishment, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{cnpj}")
+    public ResponseEntity<Establishment> delete(@PathVariable("cnpj") String cnpj) throws Exception{
+        this.service.deleteEstablishment(cnpj);
+        return  ResponseEntity.noContent().build();
     }
 }
