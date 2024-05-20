@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/establishments")
 public class EstablishmentController {
@@ -28,5 +30,11 @@ public class EstablishmentController {
     public ResponseEntity<Establishment> FindEstablishmentByCnpj(@PathVariable String cnpj) throws Exception {
         Establishment establishment = this.service.findEstablishmentByCnpj(cnpj);
         return ResponseEntity.ok().body(establishment);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Establishment>> findAll(){
+        List<Establishment> listEstablishment = this.service.findAll();
+        return new ResponseEntity<>(listEstablishment, HttpStatus.OK);
     }
 }
