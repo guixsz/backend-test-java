@@ -31,4 +31,16 @@ public class VehicleController {
         List<Vehicle> vehicleList = this.service.findAll();
         return new ResponseEntity<>(vehicleList, HttpStatus.OK);
     }
+
+    @GetMapping("/{plate}")
+    public ResponseEntity<Vehicle> findByPlate(@PathVariable("plate") String plate) throws Exception{
+        Vehicle vehicle = service.findByPlate(plate);
+        return new ResponseEntity<>(vehicle, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{plate}")
+    public ResponseEntity<Vehicle> delete(@PathVariable("plate") String plate) throws Exception{
+        service.deleteVehicle(plate);
+        return ResponseEntity.noContent().build();
+    }
 }
