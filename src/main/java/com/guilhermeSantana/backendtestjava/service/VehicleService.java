@@ -22,4 +22,7 @@ public class VehicleService {
         return newVehicle;
     }
 
+    public List<Vehicle> findAll(){
+        return this.repository.findAll();
+    }
 }
