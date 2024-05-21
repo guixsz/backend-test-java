@@ -28,7 +28,7 @@ public class EstablishmentController {
     }
 
     @GetMapping("/{cnpj}")
-    public ResponseEntity<Establishment> FindEstablishmentByCnpj(@PathVariable() String cnpj) throws Exception {
+    public ResponseEntity<Establishment> FindEstablishmentByCnpj(@PathVariable("cnpj") String cnpj) throws Exception {
         Establishment establishment = this.service.findEstablishmentByCnpj(cnpj);
         return ResponseEntity.ok().body(establishment);
     }
