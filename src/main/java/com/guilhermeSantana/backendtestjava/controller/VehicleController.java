@@ -26,4 +26,9 @@ public class VehicleController {
         return new ResponseEntity<>(newVehicle, HttpStatus.CREATED);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Vehicle>> findAll(){
+        List<Vehicle> vehicleList = this.service.findAll();
+        return new ResponseEntity<>(vehicleList, HttpStatus.OK);
+    }
 }
