@@ -1,5 +1,6 @@
 package com.guilhermeSantana.backendtestjava.domain;
 
+import com.guilhermeSantana.backendtestjava.dtos.VehicleDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -24,6 +25,14 @@ public class Vehicle {
         this.color = color;
         this.model = model;
         this.type = type;
+    }
+
+    public Vehicle(VehicleDto data){
+        this.plate = data.plate();
+        this.brand = data.brand();
+        this.color = data.color();
+        this.model = data.model();
+        this.type = data.type();
     }
 
     public String getPlate() {
