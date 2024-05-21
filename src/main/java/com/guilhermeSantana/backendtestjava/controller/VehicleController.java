@@ -43,4 +43,10 @@ public class VehicleController {
         service.deleteVehicle(plate);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{plate}")
+    public ResponseEntity<Vehicle> update(@PathVariable("plate") String plate, @RequestBody VehicleDto data) throws Exception{
+        Vehicle updateVehicle = this.service.update(plate, data);
+        return  new ResponseEntity<>(updateVehicle, HttpStatus.CREATED);
+    }
 }
