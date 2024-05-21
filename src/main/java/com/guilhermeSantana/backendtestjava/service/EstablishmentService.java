@@ -40,13 +40,12 @@ public class EstablishmentService {
 
     public Establishment update(String cnpj, EstablishmentDto data) throws Exception{
         Establishment establishment = this.findEstablishmentByCnpj(cnpj);
+        deleteEstablishment(establishment.getCnpj());
 
-        if(!data.cnpj().isEmpty()) establishment.setCnpj(data.cnpj());
+        Establishment newestablishment = new Establishment(data);
+        repository.save(newestablishment);
 
-        establishment = new Establishment(data);
-        repository.save(establishment);
-
-        return establishment;
+        return newestablishment;
 
     }
 }

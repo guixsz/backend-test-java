@@ -34,4 +34,14 @@ public class VehicleService {
         Vehicle vehicle = findByPlate(plate);
         this.repository.deleteById(plate);
     }
+
+    public Vehicle update(String plate, VehicleDto data) throws Exception{
+        Vehicle updateVehicle = findByPlate(plate);
+        deleteVehicle(updateVehicle.getPlate());
+
+        Vehicle newVehicle = new Vehicle(data);
+        repository.save(newVehicle);
+
+        return newVehicle;
+    }
 }
