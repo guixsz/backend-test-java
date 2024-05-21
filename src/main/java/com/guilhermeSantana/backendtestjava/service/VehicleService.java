@@ -16,6 +16,10 @@ public class VehicleService {
         this.repository = repository;
     }
 
+    public Vehicle findByPlate(String plate) throws Exception{
+        return this.repository.findByplate(plate).orElseThrow(() -> new Exception("Veiculo não encontrado"));
+    }
+
     public Vehicle createVehicle(VehicleDto data){
         Vehicle newVehicle = new Vehicle(data);
         this.repository.save(newVehicle);
@@ -24,5 +28,10 @@ public class VehicleService {
 
     public List<Vehicle> findAll(){
         return this.repository.findAll();
+    }
+
+    public void deleteVehicle(String plate) throws Exception{
+        Vehicle vehicle = findByPlate(plate);
+        this.repository.deleteById(plate);
     }
 }
