@@ -57,4 +57,8 @@ public class EntryExitService {
         return this.entryExitRepository.findAll();
     }
 
+    public void deleteEntryExit(Integer id){
+        entryExitRepository.deleteById(id);
+    }
+
 }

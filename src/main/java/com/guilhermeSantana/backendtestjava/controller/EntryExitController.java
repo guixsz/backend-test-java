@@ -37,4 +37,10 @@ public class EntryExitController {
         List<EntryExit> entryExitList = entryExitService.findAll();
         return new ResponseEntity<>(entryExitList,HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<EntryExit> deleteEntryExit(@PathVariable("id") Integer id){
+        entryExitService.deleteEntryExit(id);
+        return ResponseEntity.noContent().build();
+    }
 }
