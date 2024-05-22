@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("entry-exit")
 public class EntryExitController {
@@ -28,5 +30,11 @@ public class EntryExitController {
     public ResponseEntity<EntryExit> registerExit(@PathVariable("id") Integer id) throws Exception{
         EntryExit entryExit = entryExitService.registerExit(id);
         return new ResponseEntity<>(entryExit, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<EntryExit>> findAll(){
+        List<EntryExit> entryExitList = entryExitService.findAll();
+        return new ResponseEntity<>(entryExitList,HttpStatus.OK);
     }
 }
