@@ -8,4 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface EntryExitRepository extends JpaRepository<EntryExit, Integer> {
+    Optional<EntryExit> findById(Integer id);
 }

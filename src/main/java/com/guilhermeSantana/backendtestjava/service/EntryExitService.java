@@ -28,9 +28,9 @@ public class EntryExitService {
 
 
     public EntryExit registerEntry(String plate, String cnpj) throws Exception{
-        Vehicle vehicle = this.vehicleRepository.findByplate(plate).orElseThrow(() -> new Exception("Veículo não encontrado"));
+        Vehicle vehicle = this.vehicleRepository.findByplate(plate).orElseThrow(() -> new Exception("Vehicle not found"));
 
-        Establishment establishment = this.establishmentRepository.findEstablishmentByCnpj(cnpj).orElseThrow(() -> new Exception("Estabelecimento não encontrado"));
+        Establishment establishment = this.establishmentRepository.findEstablishmentByCnpj(cnpj).orElseThrow(() -> new Exception("Establishment not found"));
 
         EntryExit entryExit = new EntryExit();
         entryExit.setVehicle(vehicle);
@@ -38,6 +38,15 @@ public class EntryExitService {
         entryExit.setEntryDate(LocalDateTime.now());
         entryExit.setExitDate(LocalDateTime.now());
 
+        entryExitRepository.save(entryExit);
+
+        return entryExit;
+    }
+
+    public EntryExit registerExit(Integer id) throws Exception{
+        EntryExit entryExit = this.entryExitRepository.findById(id).orElseThrow(() -> new Exception("Record not found"));
+
+        entryExit.setExitDate(LocalDateTime.now());
         entryExitRepository.save(entryExit);
 
         return entryExit;
