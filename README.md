@@ -1,58 +1,101 @@
-### FCamara 🚀
-*"Queremos ser como uma árvore, 
-  crescer um pouco todos os dias e tentar tocar o céu, 
-  sem perder a solidez de nossas raízes."*
-Conheça: www.fcamara.com.br
+<h1 align="center">
+    Desafio BackEnd Fcamara
+</h1>
 
-## Teste para vaga de Desenvolvedor Back-end
-Criar uma API REST para gerenciar um estacionamento de carros e motos.
+Criação de API para cadastrar veículos, estabelecimentos e fazer o gerenciamento das entradas e saídas de um veiculo em um estabelecimento, essa proposta faz parte  [desse desafio](https://github.com/fcamarasantos/backend-test-java) para pessoas desenvolvedoras backend.
 
-## Cadastro de estabelecimento
+## Tecnologias
 
-Criar um cadastro da empresa com os seguintes campos:
-- Nome;
-- CNPJ;
-- Endereço;
-- Telefone;
-- Quantidade de vagas para motos;
-- Quantidade de vagas para carros.
+- [Java](https://www.java.com/es/download/)
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Spring MVC](https://docs.spring.io/spring-framework/reference/web/webmvc.html)
+- [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
+- [PostgresSQL](https://www.postgresql.org/)
+- [Postman](https://www.postman.com/)
 
-**Todos** os campos são de preenchimento obrigatório.
+## Práticas adotadas
 
-## Cadastro de veículos
+- SOLID, DRY, YAGNI, KISS
+- POO
+- API REST
+- Consultas com Spring JPA
+- Tratamento de respostas de erros
 
-Criar um cadastro de veículos com os seguintes campos:
-- Marca;
-- Modelo;
-- Cor;
-- Placa;
-- Tipo.
+## Como Executar
 
-**Todos** os campos são de preenchimento obrigatório.
+- Clonar repositório
+- Construir o projeto :
+```
+$ ./mvnw clean package
+```
+- Execultar a aplicação :
+```
+$ java -jar target/backend-test-java-0.0.1-SNAPSHOT.jar
+```
+A API poderá ser acessada em [localhost:8080](http://localhost:8080).
 
-## Funcionalidades
+## Veículo
+### Cadastro de veiculos
 
-   - **Estabelecimento:** CRUD;
-   - **Veículos:** CRUD;
-   - **Controle de entrada e saída de veículos.**
+- Método POST
+- Utilize essa URL - [localhost:8080/vehicle](http://localhost:8080/vehicle)
+- Estrutura Json para cadastro abaixo
+```
+{
+    "plate": "PKT-2204",
+    "brand": "Wolksvagem",
+    "color": "Branco",
+    "model": "Gol g7",
+    "type": "2017"
+}
+```
 
-## Requisitos
+### Busca por veículos cadastrado
 
-   - Modelagem de dados;
-   - O retorno deverá ser em formato JSON e XML;
-   - Requisições GET, POST, PUT ou DELETE, conforme a melhor prática;
-   - A persistência dos dados pode ser realizada da maneira que preferir;
-   - Criar README do projeto descrevendo as tecnologias utilizadas, chamadas dos serviços e configurações necessário para executar a aplicação.
-   
-## Ganha mais pontos
-   - Desenvolver utilizando TDD;
-   - Criar API de relatório;
-   - Sumário da quantidade de entrada e saída;
-   - Sumário da quantidade de entrada e saída de veículos por hora;
-   - Criar uma solução de autenticação.
+- Método GET
+- Utilize essa URL - [localhost:8080/vehicle](http://localhost:8080/vehicle)
 
-## Submissão
-Crie um fork do teste para acompanharmos o seu desenvolvimento através dos seus commits.
+### Deletar veículo
 
-## Obrigado!
-Agradecemos sua participação no teste. Boa sorte! 😄
+- Método DELETE
+- Informe a placa do veiculo no final da URL
+- Utilize essa URL - [localhost:8080/vehicle/placa](http://localhost:8080/vehicle)
+
+## Estabelecimento
+
+### Cadastro de estabelecimento
+- Método POST
+- Utilize essa URL - [localhost:8080/establishment](http://localhost:8080/establishment)
+- Estrutura Json para cadastro abaixo
+
+```
+ {
+        "cnpj": "5468796541",
+        "name": "update-establishment-100",
+        "address": "update-address-establishment-100",
+        "phone": "7777-5555",
+        "numberMoto": 3,
+        "numberCar": 2
+ }
+```
+
+### Busca pelos estabelecimento
+
+- Método GET
+- Utilize essa URL - [localhost:8080/establishment](http://localhost:8080/establishment)
+
+## Entrada e saida
+
+### Cadastro de entradas e saídas
+
+- Método POST
+- Utilize essa URL - [localhost:8080/entry-exit/placa/cnpj](http://localhost:8080/entry-exit)
+- Informe a placa do carro que ira ser registrado e o CNPJ do estabelecimento na URL
+
+
+### Busca pelas entradas e saídas
+
+- Método GET
+- Utilize essa URL - [localhost:8080/entry-exit](http://localhost:8080/entry-exit)
+
+
